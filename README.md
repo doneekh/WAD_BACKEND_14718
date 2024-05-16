@@ -18,8 +18,8 @@ To run this application, you will need the following:
 
 ## Installation
 
-1. Clone the repository: git clone https://github.com/yourusername/car-rental-system.git
-2. Navigate to the project directory: cd car-rental-system
+1. Clone the repository: git clone https://github.com/yourusername/
+2. Navigate to the project directory: cd 
 3. Install backend dependencies: dotnet restore
 4. Install frontend dependencies: cd ClientApp && npm install
 5. Start the application:
