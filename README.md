@@ -16,9 +16,27 @@ To run this application, you will need the following:
     * Node.js and npm (https://nodejs.org/en)
     * Angular CLI (https://angular.io/cli)
 
-## Getting Started
+## Installation
 
-1. Clone this repository:
+1. Clone the repository: git clone https://github.com/yourusername/car-rental-system.git
+2. Navigate to the project directory: cd car-rental-system
+3. Install backend dependencies: dotnet restore
+4. Install frontend dependencies: cd ClientApp && npm install
+5. Start the application:
+   - Backend: dotnet run
+   - Frontend: ng serve
 
-```bash
-git clone [https://github.com/](https://github.com/)<your-username>/student-grade-tracker.git
+## Project Structure
+
+- Backend: Contains the ASP.NET Core API project.
+- ClientApp: Contains the Angular frontend project.
+- Database: Contains database schema and migrations scripts.
+
+## Usage
+
+- Ensure that the backend server is running (`dotnet run`) and the frontend server is serving (`ng serve`).
+- Open your web browser and navigate to http://localhost:4200 to access the application.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
