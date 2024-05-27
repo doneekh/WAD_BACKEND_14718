@@ -1,13 +1,17 @@
 ﻿using CW_WAD_00014718.Models;
 using CW_WAD_00014718.Repository;
 using Microsoft.AspNetCore.Mvc;
+using WAD_BACKEND_14718.DAL;
 
 namespace CW_WAD_00014718.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class StudentController : ControllerBase
     {
         
         private readonly IStudentRepository studentRepository;
+        private readonly StudentGradeDbContext _context;
 
         public StudentController(IStudentRepository studentRepository)
         {
@@ -35,7 +39,7 @@ namespace CW_WAD_00014718.Controllers
         }
 
         // PUT: api/Student/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // To protect from overposting attacks
         [HttpPut("{id}")]
         public async Task<IActionResult> PutStudent(int id, Student student)
         {
@@ -55,7 +59,7 @@ namespace CW_WAD_00014718.Controllers
         {
             await studentRepository.CreateStudent(student);
 
-            return CreatedAtAction("GetStuudent", new { id = student.Id }, student);
+            return NoContent();
         }
 
         // DELETE: api/Student/5

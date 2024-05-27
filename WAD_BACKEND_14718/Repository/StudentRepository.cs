@@ -1,39 +1,50 @@
 ﻿using CW_WAD_00014718.Models;
+using Microsoft.EntityFrameworkCore;
+using WAD_BACKEND_14718.DAL;
 
 namespace CW_WAD_00014718.Repository
 {
     public class StudentRepository : IStudentRepository
     {
 
-        
-        
-
-        public Task CreateStudent(Student recept)
+        public StudentGradeDbContext DbContext { get; }
+        public StudentRepository(StudentGradeDbContext dbContext)
         {
-            throw new NotImplementedException();
+            DbContext = dbContext;
+        }
+        public async Task CreateStudent(Student student)
+        {
+            await DbContext.Student.AddAsync(student);
+            await DbContext.SaveChangesAsync();
         }
 
 
-        public Task DeleteStudent(int id)
+        public async Task DeleteStudent(int id)
         {
-            throw new NotImplementedException();
+            var student = await DbContext.Student.FirstOrDefaultAsync(s => s.Id == id);
+
+            if (student != null)
+            {
+                DbContext.Student.Remove(student);
+                await DbContext.SaveChangesAsync();
+            }
         }
 
  
-        public Task<IEnumerable<Student>> GetAllStudent()
+        public async Task<IEnumerable<Student>> GetAllStudent()
         {
-            throw new NotImplementedException();
+            return await DbContext.Student.ToListAsync();
         }
 
-
-        public Task<Student> GetSingleStudent(int id)
+        public async Task<Student> GetSingleStudent(int id)
         {
-            throw new NotImplementedException();
+            return await DbContext.Student.FirstOrDefaultAsync(r => r.Id == id);
         }
 
-        public Task UpdateStudent(Student recept)
+        public async Task UpdateStudent(Student student)
         {
-            throw new NotImplementedException();
+            DbContext.Entry(student).State = EntityState.Modified;
+            await DbContext.SaveChangesAsync();
         }
     }
 }

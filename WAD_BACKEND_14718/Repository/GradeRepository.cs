@@ -1,32 +1,46 @@
 ﻿using CW_WAD_00014718.Models;
+using Microsoft.EntityFrameworkCore;
+using WAD_BACKEND_14718.DAL;
 
 namespace CW_WAD_00014718.Repository
 {
     public class GradeRepository : IGradeRepository
     {
-        public Task CreateGrade(Grade grade)
+        public StudentGradeDbContext DbContext { get; }
+        public GradeRepository(StudentGradeDbContext dbContext)
         {
-            throw new NotImplementedException();
+            DbContext = dbContext;
+        }
+        public async Task CreateGrade(Grade grade)
+        {
+            await DbContext.Grade.AddAsync(grade);
+            await DbContext.SaveChangesAsync();
         }
 
-        public Task DeleteGrade(int id)
+        public async Task DeleteGrade(int id)
         {
-            throw new NotImplementedException();
+            var grade = await DbContext.Grade.FirstOrDefaultAsync(g => g.Id == id);
+            if (grade != null)
+            {
+                DbContext.Grade.Remove(grade);
+                await DbContext.SaveChangesAsync();
+            }
         }
 
-        public Task<IEnumerable<Grade>> GetAllGrade()
+        public async Task<IEnumerable<Grade>> GetAllGrade()
         {
-            throw new NotImplementedException();
+            return await DbContext.Grade.Include(g => g.Student).ToListAsync();
         }
 
-        public Task<Grade> GetSingleGrade(int id)
+        public async Task<Grade> GetSingleGrade(int id)
         {
-            throw new NotImplementedException();
+            return await DbContext.Grade.Include(g => g.Student).FirstOrDefaultAsync(g => g.Id == id);
         }
 
-        public Task UpdateGrade(Grade grade)
+        public async Task UpdateGrade(Grade grade)
         {
-            throw new NotImplementedException();
+            DbContext.Entry(grade).State = EntityState.Modified;
+            await DbContext.SaveChangesAsync();
         }
     }
 }
