@@ -6,27 +6,32 @@ namespace CW_WAD_00014718.Repository
     {
 
         
-        public Task CreateRecept(Student recept)
+        
+
+        public Task CreateStudent(Student recept)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteRecept(int id)
+
+        public Task DeleteStudent(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Student>> GetAllRecept()
+ 
+        public Task<IEnumerable<Student>> GetAllStudent()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Student> GetSingleRecept(int id)
+
+        public Task<Student> GetSingleStudent(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateRecept(Student recept)
+        public Task UpdateStudent(Student recept)
         {
             throw new NotImplementedException();
         }
