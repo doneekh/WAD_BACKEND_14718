@@ -16,15 +16,14 @@ namespace WAD_BACKEND_14718.Controllers
         }
 
         // POST: api/Grade
-        // To protect from overposting attacks
         [HttpPost]
-        public async Task<ActionResult<Grade>> CreateGrade(Grade greade)
+        public async Task<ActionResult<Grade>> CreateGrade(Grade grade)
         {
-            await _gradeRepository.CreateGrade(greade);
-            return CreatedAtAction("GetAllVisitor", new { id = greade.Id }, greade);
+            grade.Student.Id = 0;
+            await _gradeRepository.CreateGrade(grade);
+            return Ok(grade);
         }
         // PUT: api/Grade/5
-        // To protect from overposting attacks, 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateGrade(int id, Grade grade)
         {
@@ -50,7 +49,7 @@ namespace WAD_BACKEND_14718.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok("Updated");
         }
         // GET: api/Grade/5
         [HttpGet("{id}")]
@@ -76,7 +75,7 @@ namespace WAD_BACKEND_14718.Controllers
         {
             await _gradeRepository.DeleteGrade(id);
 
-            return NoContent();
+            return Ok("Deleted");
         }
 
 

@@ -25,7 +25,7 @@ namespace CW_WAD_00014718.Controllers
             return await studentRepository.GetAllStudent();
         }
 
-        // GET: api/Students/5
+        // GET: api/Students/7
         [HttpGet("{id}")]
         public async Task<ActionResult<Student>> GetStudent(int id)
         {
@@ -38,8 +38,7 @@ namespace CW_WAD_00014718.Controllers
             return Ok(recept);
         }
 
-        // PUT: api/Student/5
-        // To protect from overposting attacks
+        // PUT: api/Student/7
         [HttpPut("{id}")]
         public async Task<IActionResult> PutStudent(int id, Student student)
         {
@@ -49,17 +48,16 @@ namespace CW_WAD_00014718.Controllers
             }
 
             await studentRepository.UpdateStudent(student);
-            return NoContent();
+            return Ok("Updated");
         }
 
         // POST: api/Student
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Student>> PostStudent(Student student)
         {
             await studentRepository.CreateStudent(student);
 
-            return NoContent();
+            return Ok("Created");
         }
 
         // DELETE: api/Student/5
@@ -67,7 +65,7 @@ namespace CW_WAD_00014718.Controllers
         public async Task<IActionResult> DeleteStudent(int id)
         {
             await studentRepository.DeleteStudent(id);
-            return NoContent();
+            return Ok("Deleted");
         }
     }
 }

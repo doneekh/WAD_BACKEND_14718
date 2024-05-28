@@ -52,6 +52,6 @@ namespace CW_WAD_00014718.Models
         [StringLength(5, ErrorMessage = "Final grade cannot be longer than 5 characters")]
         public string FinalGrade { get; set; }
 
-        public Student Student { get; set; }
+        public Student? Student { get; set; }
     }
 }
